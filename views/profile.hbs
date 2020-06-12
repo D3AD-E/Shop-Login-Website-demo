@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    {{>header}}
+    <h3>Welcome {{userInfo.name}}</h3>
+    <div>
+        <strong>Balance {{userInfo.coins}} coins</strong>
+    </div>
+    <div>
+        <strong>Registration date {{userInfo.date}}</strong>
+    </div>
+    <h2>My Items</h2>
+    {{#if inventory}}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="list-group">
+                {{# each inventory.items }}
+                <li class="list-group-item">
+                    <span class="badge">{{ this.price }}</span>
+                    {{ this.item.title }} | {{ this.qty }} Units
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="panel-footer">
+            <strong>Total Price: {{ inventory.cart.totalPrice }} coins</strong>
+        </div>
+    </div>
+    {{else}}
+    <div class="panel-footer">
+        <strong>None, visit the shop to buy!</strong>
+    </div>
+    {{/if}}
+</body>
+</html>

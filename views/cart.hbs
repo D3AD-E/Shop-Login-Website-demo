@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    {{>header}}
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{#if success}}
+    <div class="alert alert-success">{{success}}</div>
+    {{/if}}
+    {{#if products}}
+    <div class="row">
+        <div class="col-sm-6 cal-md-6">
+            <ul class="list-group">
+                {{#each products}}
+                <li class="list-group-item">
+                    <span class="badge">{{this.qty}}</span>
+                    <strong>{{this.item.title}}</strong>
+                    <span class="label label-success">{{this.price}} coins</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/shop/reduce/{{this.item._id}}">Reduce by 1</a></li>
+                            <li><a href="/shop/remove/{{this.item._id}}">Remove all</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 cal-md-6">
+            <strong>Total: {{totalPrice}} coins</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 cal-md-6">
+            <a href="/shop/checkout" class="btn btn-primary">Buy</a>
+        </div>
+    </div>
+    {{else}}
+    <div class="row">
+        <div class="col-sm-6 cal-md-6">
+            <strong>No items in cart</strong>
+        </div>
+    </div>
+    {{/if}}
+</body>
+</html>
